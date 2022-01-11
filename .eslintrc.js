@@ -1,0 +1,71 @@
+const base = require("@umijs/fabric/dist/eslint");
+
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    globalReturn: true,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 13,
+    sourceType: "module",
+  },
+  plugins: [
+    "react",
+    "@typescript-eslint",
+  ],
+  rules: {
+    ...base,
+    semi: ["error", "always"],
+    quotes: ["error", "double"],
+    "max-len": [0, 200],
+    "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx", ".ts", ".tsx"] }],
+    indent: 0,
+    "import/extensions": [2, "never", { "web.js": "never", json: "never" }],
+    "import/no-extraneous-dependencies": [2, { devDependencies: true }],
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/ban-types": 0,
+    "react/function-component-definition": 0,
+    "arrow-body-style": 1,
+    "linebreak-style": ["off", "window"],
+    "no-tabs": 0,
+    "no-use-before-define": 0,
+    "react/require-default-props": 0,
+    "no-shadow": 0,
+    "react/jsx-indent": 0,
+    "class-methods-use-this": 0,
+    "react/no-array-index-key": 0,
+    "react/sort-comp": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "react/no-find-dom-node": 0,
+    "no-confusing-arrow": 0,
+    "import/no-named-as-default-member": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "import/no-named-as-default": 0,
+    "no-underscore-dangle": 0,
+    // "import/no-unresolved": [2, { ignore: ["react"] }],
+    // "import/no-unresolved": "off",
+  },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        paths: ["./src"],
+      },
+    },
+  },
+};
