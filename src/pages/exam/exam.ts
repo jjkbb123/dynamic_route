@@ -1,4 +1,16 @@
-export const radioExam = [
+interface ExamOption {
+    key: string;
+    value: string;
+}
+
+interface Exam {
+    title: string;
+    answer: string;
+    type?: string;
+    options: ExamOption[];
+}
+
+export const radioExam: Exam[] = [
     {
         title: '具有风险分析的软件生命周期模型是（）',
         answer: 'C',
