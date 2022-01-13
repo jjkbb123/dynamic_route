@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=" utf-8">
+    <title>海上生明月呀</title>
+
+    </script>
+    <style>
+        #color {
+            width: 100%;
+            height: 1000px;
+        }
+
+        div {
+            position: absolute;
+        }
+
+        img {
+            position: absolute;
+            filter: alpha(opacity=500);
+            /* IE */
+            -moz-opacity: 1;
+            /* Moz + FF */
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="color"></div>
+    <div id="divimg"><img src="https://img-blog.csdn.net/20180921223952645?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NlYXJjaGluX1I=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="150" height="150"></div>
+    <div id="poem" style="margin-top:300px;margin-left:700px;font-size:40px;font-weight:bold;"> </div>
+
+    <script>
+         
+            var tg = document.getElementById("color");
+            tg.style.backgroundImage = 'url(https://img-blog.csdn.net/20180921223808807?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NlYXJjaGluX1I=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)';
+            tg.style.backgroundRepeat = 'no-repeat';
+            tg.style.backgroundSize = '100%';
+
+
+            var img = document.getElementById("divimg");
+            var x = 0, y = 500;
+            var xSpeed = 2, ySpeed = 1;
+            //设置图片的最大浮动的高度和宽度
+            //var w=document.documentElement.clientWidth-110,h=document.documentElement.clientHeight-160;
+            function floatimg() {
+                clearTimeout(timer) 
+                var H = 0;
+                //月亮如果到达指定位置，则停住，否则继续移动。
+                if (x == 850 || y == 50) { xSpeed = xSpeed; y = ySpeed; H = 1 }
+                else {
+                    x += xSpeed;
+                    y -= ySpeed;
+                    img.style.top = y + "px";
+                    img.style.left = x + "px";
+                }
+                if (H == 1) {
+                    var tt = document.getElementById("poem");
+                    tt.innerHTML = "海上生明月， 饭大王最帅。";
+                }
+                //延迟调用函数floatimg()，每个40毫秒调用一次
+                var timer = setTimeout(floatimg, 40);
+            }
+            floatimg();
+    </script>
+
+</body>
+
+</html>
