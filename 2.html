@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Gloria Hallelujah', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        'Gloria Hallelujah', sans-serif
+    </div>
+    <script>
+
+        const a = {
+            validateSQL: function (content) {
+                var insertReg = /INSERT[\s+\n+]+INTO[\s+\n+]+\S+[\s*\n*]*\([\S*\s*\n*]+\)[\s*\n*]+VALUES[\s*\n*]*\([\S*\s*\n*]+\)/;
+                var updateReg = /UPDATE[\s+\n+]+\S+[\s+\n+]+SET[\S*\s*\n*]+(WHERE[\S*\s*\n*]+)?/;
+                var deleteReg = /DELETE[\s+\n+]+FROM[\s+\n+]+\S+[\s+\n+]+(WHERE[\S*\s*\n*]+)?/;
+                var commitReg = /COMMIT;/;
+                var scriptArray = Util.splitSqlArray(content);
+                var result = new Array();
+                for (var i = 0; i < scriptArray.length; i++) {
+                    if (scriptArray[i].word.trim() == "") continue;
+                    var script = scriptArray[i].word.trim();
+                    if ((stat = insertReg.exec(script)) != null) {
+                        sTable = stat[0].substring(stat[0].indexOf("INTO") + 4, stat[0].indexOf("(")).trim(); 
+                        var item = [scriptArray[i].rowid, sTable, "INSERT", "NA", 1, "LOW", script];
+                    } else if ((stat = updateReg.exec(script)) != null) {
+                        sTable = stat[0].substring(stat[0].indexOf("UPDATE") + 6, stat[0].indexOf("SET")).trim(); 
+                        if (stat[0].indexOf("WHERE") > 0) { 
+                            sCond = stat[0].substring(stat[0].indexOf("WHERE") + 5).trim(); 
+                            item = [scriptArray[i].rowid, sTable, "UPDATE", sCond, 100, "MEDIUM", script]; 
+                        } else { 
+                            item = [scriptArray[i].rowid, sTable, "UPDATE", "NA", 100, "HIGH", "You don't have a where clause!"]; 
+                        }
+                    } else if ((stat = deleteReg.exec(script)) != null) {
+                        sTable = stat[0].substring(stat[0].indexOf("FROM") + 4, 
+                        stat[0].indexOf("WHERE")).trim(); if (stat[0].indexOf("WHERE") > 0) { 
+                            sCond = stat[0].substring(stat[0].indexOf("WHERE") + 5).trim(); item = [scriptArray[i].rowid, sTable, "DELETE", sCond, 100, "MEDIUM", script]; 
+                        } else { 
+                            item = [scriptArray[i].rowid, sTable, "UPDATE", "NA", 100, "HIGH", "You don't have a where clause!"]; 
+                        }
+                    } else { item = null; }
+                    if (item != null) result[result.length] = item;
+                }
+                return result;
+            }
+        }
+        let a = 11;
+    </script>
+</body>
+
+</html>

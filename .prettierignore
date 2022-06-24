@@ -2,7 +2,7 @@
 **/*.svg
 **/*.ejs
 **/*.html
-package.json
+# package.json
 .umi
 .umi-production
 .umi-test

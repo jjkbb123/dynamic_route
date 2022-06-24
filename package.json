@@ -22,16 +22,19 @@
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
     "antd": "^4.17.4",
+    "global": "^4.4.0",
     "react": "17.x",
     "react-dom": "17.x",
-    "umi": "^3.5.20"
+    "test_library": "^1.0.0",
+    "test_num2word": "^1.0.0",
+    "umi": "^3.4.23"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
-    "@umijs/preset-react": "1.x",
+    "@umijs/preset-react": "^1.4.8",
     "@umijs/test": "^3.5.20",
     "eslint": "8.2.0",
     "eslint-config-airbnb": "19.0.2",
@@ -43,6 +46,7 @@
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
     "typescript": "^4.1.2",
+    "xml-loader": "^1.2.1",
     "yorkie": "^2.0.0"
   }
 }
